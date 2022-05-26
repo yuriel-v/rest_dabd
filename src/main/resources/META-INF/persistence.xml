@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+    xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence 
+                        http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <!-- esse nome abaixo deve ser passado para o contexto de persistência-->
+    <persistence-unit name="default" transaction-type="JTA">  
+        <jta-data-source>jdbc/eventjpadatasource</jta-data-source>
+        <properties>
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <property name="eclipselink.ddl-generation.output-mode" value="both" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://yuriel.dev:3306/dabd"/>
+            <property name="javax.persistence.jdbc.user" value="dabd_api">
+            <!-- nota: a senha deve vir de uma variável de ambiente, a ser colocada
+                 em tempo de execução no contexto de persistência -->
+        </properties>
+    </persistence-unit>
+</persistence>
