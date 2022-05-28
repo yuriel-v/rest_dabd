@@ -1,0 +1,15 @@
+<server description="DABD Back-end">
+  <featureManager>
+    <feature>jaxrs-2.1</feature>
+  </featureManager>
+
+<httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
+              id="defaultHttpEndpoint" host="localhost" />
+
+<httpSession idLength="28" />
+<httpEncoding encoding.en="UTF-8" encoding.pt="UTF-8"/>
+
+<webApplication location="rest_dabd.war" contextRoot="${app.context.root}" 
+                name="rest_dabd" id="rest_dabd" />
+				  
+</server>
