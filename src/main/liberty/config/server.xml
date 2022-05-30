@@ -1,6 +1,11 @@
 <server description="DABD Back-end">
   <featureManager>
     <feature>jaxrs-2.1</feature>
+    <feature>cdi-2.0</feature>
+    <!--feature>jpa-2.2</feature-->
+    <feature>jpaContainer-2.2</feature>
+    <feature>bells-1.0</feature>
+    <feature>jdbc-4.3</feature>
   </featureManager>
 
 <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
@@ -9,7 +14,27 @@
 <httpSession idLength="28" />
 <httpEncoding encoding.en="UTF-8" encoding.pt="UTF-8"/>
 
+<library id="jdbcLib">
+  <fileset dir="jdbc" includes="*.jar" />
+</library>
+
+<dataSource jndiName="jdbc/dabd">
+    <jdbcDriver libraryRef="jdbcLib"/>
+    <properties serverName="yuriel.dev" portNumber="3306"
+                databaseName="dabd"
+                user="dabd"
+                password="${env.JDBC_ROOTPW}"/>
+</dataSource>
+
+<library id="eclipseLib">
+  <fileset dir="jpa" includes="*.jar" />
+</library>
+
+<bell libraryRef="eclipseLib"/>
+
 <webApplication location="rest_dabd.war" contextRoot="${app.context.root}" 
-                name="rest_dabd" id="rest_dabd" />
-				  
+                name="rest_dabd" id="rest_dabd">
+  <classloader commonLibraryRef="eclipseLib"/>
+</webApplication>
+
 </server>

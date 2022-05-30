@@ -5,14 +5,15 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence 
                         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
     <!-- esse nome abaixo deve ser passado para o contexto de persistência-->
-    <persistence-unit name="default" transaction-type="JTA">  
-        <jta-data-source>jdbc/eventjpadatasource</jta-data-source>
+    <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">  
+        <non-jta-data-source>jdbc/dabd</non-jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="eclipselink.ddl-generation" value="create-tables"/>
             <property name="eclipselink.ddl-generation.output-mode" value="both" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://yuriel.dev:3306/dabd"/>
-            <property name="javax.persistence.jdbc.user" value="dabd_api">
+            <property name="javax.persistence.jdbc.user" value="dabd"/>
             <!-- nota: a senha deve vir de uma variável de ambiente, a ser colocada
                  em tempo de execução no contexto de persistência -->
         </properties>
