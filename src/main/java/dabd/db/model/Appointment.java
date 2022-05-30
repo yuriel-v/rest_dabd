@@ -5,12 +5,12 @@ import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.Table;
 
 @Entity
-@IdClass(AppointmentId.class)
+@Table(name = "appointment")
 public class Appointment implements Serializable
 {
     public static final long serialVersionUID = 3L;

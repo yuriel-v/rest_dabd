@@ -3,16 +3,20 @@ package dabd.db.model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity(name = "doctors")
+@Entity
+@Table(name = "doctors")
 public class Doctor implements Serializable
 {
     public static final long serialVersionUID = 1L;
+    public static final Pattern crmPattern = Pattern.compile("^[0-9]{8}-[0-9]$");
 
     @Id
     private String crm;
@@ -25,6 +29,15 @@ public class Doctor implements Serializable
 
     @OneToMany(mappedBy = "doc")
     private Set<Appointment> appointments = new HashSet<>();
+
+    public Doctor() {}
+
+    public Doctor(String name, String crm, String specialty)
+    {
+        this.name = name;
+        this.crm = crm;
+        this.specialty = specialty;
+    }
 
     // ordinary getters/setters
     public String getCrm() {
@@ -49,5 +62,13 @@ public class Doctor implements Serializable
 
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
+    }
+
+    public Set<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(Set<Appointment> appointments) {
+        this.appointments = appointments;
     }
 }
