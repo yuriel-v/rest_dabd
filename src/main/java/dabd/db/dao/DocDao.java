@@ -16,7 +16,7 @@ public class DocDao extends Dao<Doctor>
     public List<Doctor> findByPk(String primaryKey) {
         return Dao.castList(Doctor.class, this.em
             .createNativeQuery(  // SQL: JPA não define um método para acha mais de 1 registro
-                String.format("SELECT * FROM doctors WHERE crm LIKE %%%s%%", primaryKey)
+                String.format("SELECT * FROM doctors WHERE crm LIKE \"%%%s%%\"", primaryKey)
             )
             .getResultList());
     }
@@ -24,5 +24,10 @@ public class DocDao extends Dao<Doctor>
     @Override
     public Doctor find(String primaryKey) {
         return this.em.find(Doctor.class, primaryKey);
+    }
+
+    @Override
+    public boolean exists(String primaryKey) {
+        return this.em.find(Doctor.class, primaryKey) != null;
     }
 }
