@@ -56,14 +56,14 @@ public class Test
                 .entity(gson.toJson(Map.of("error", e.getMessage())))
                 .build();
         }
-        // catch (Exception e)
-        // {
-        //     System.err.println(e.getMessage());
-        //     return Response
-        //         .status(500)
-        //         .entity(gson.toJson(Map.of("error", "Internal server error")))
-        //         .build();
-        // }
+        catch (Exception e)
+        {
+            System.err.println(e.getStackTrace());
+            return Response
+                .status(500)
+                .entity(gson.toJson(Map.of("error", "Internal server error")))
+                .build();
+        }
     }
 
     @GET
@@ -88,14 +88,14 @@ public class Test
                 .entity(gson.toJson(Map.of("error", e.getMessage())))
                 .build();
         }
-        // catch (Exception e)
-        // {
-        //     System.err.println(e.getMessage());
-        //     return Response
-        //         .status(500)
-        //         .entity(gson.toJson(Map.of("error", "Internal server error")))
-        //         .build();
-        // }
+        catch (Exception e)
+        {
+            System.err.println(e.getStackTrace());
+            return Response
+                .status(500)
+                .entity(gson.toJson(Map.of("error", "Internal server error")))
+                .build();
+        }
     }
 
     @POST
@@ -129,14 +129,14 @@ public class Test
                 .entity(gson.toJson(Map.of("error", e.getMessage())))
                 .build();
         }
-        // catch (Exception e)
-        // {
-        //     System.err.println(e.getMessage());
-        //     return Response
-        //         .status(500)
-        //         .entity(gson.toJson(Map.of("error", "Internal server error")))
-        //         .build();
-        // }
+        catch (Exception e)
+        {
+            System.err.println(e.getStackTrace());
+            return Response
+                .status(500)
+                .entity(gson.toJson(Map.of("error", "Internal server error")))
+                .build();
+        }
 
     }
 }
