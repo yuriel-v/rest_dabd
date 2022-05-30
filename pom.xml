@@ -10,15 +10,14 @@
   <url>http://www.example.com</url>
   <properties>
     <maven.compiler.target>11</maven.compiler.target>
+    <liberty.jvm.arg2>-Duser.country=BR</liberty.jvm.arg2>
+    <liberty.jvm.arg3>-Dfile.encoding=utf-8</liberty.jvm.arg3>
     <liberty.var.default.http.port>9080</liberty.var.default.http.port>
     <maven.compiler.source>11</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <liberty.var.default.https.port>9443</liberty.var.default.https.port>
     <liberty.var.app.context.root>/</liberty.var.app.context.root>
     <liberty.jvm.arg1>-Duser.language=pt</liberty.jvm.arg1>
-    <liberty.jvm.arg2>-Duser.country=BR</liberty.jvm.arg2>
-    <liberty.jvm.arg3>-Dfile.encoding=utf-8</liberty.jvm.arg3>
-
   </properties>
   <dependencies>
     <dependency>
@@ -62,6 +61,17 @@
       <version>1.0.9</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>eclipselink</artifactId>
+      <version>2.7.10</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.29</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <build>
     <finalName>rest_dabd</finalName>
@@ -78,7 +88,9 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
-          <configuration> <encoding>UTF-8</encoding> </configuration>
+          <configuration>
+            <encoding>UTF-8</encoding>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -100,6 +112,26 @@
           <groupId>io.openliberty.tools</groupId>
           <artifactId>liberty-maven-plugin</artifactId>
           <version>3.3.4</version>
+          <configuration>
+            <copyDependencies>
+              <dependencyGroup>
+                <location>jdbc</location>
+                <dependency>
+                  <groupId>mysql</groupId>
+                  <artifactId>mysql-connector-java</artifactId>
+                  <version>8.0.29</version>
+                </dependency>
+              </dependencyGroup>
+              <dependencyGroup>
+                <location>jpa</location>
+                <dependency>
+                  <groupId>org.eclipse.persistence</groupId>
+                  <artifactId>eclipselink</artifactId>
+                  <version>2.7.10</version>
+                </dependency>
+              </dependencyGroup>
+            </copyDependencies>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-failsafe-plugin</artifactId>

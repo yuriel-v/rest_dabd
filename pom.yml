@@ -52,6 +52,15 @@ dependencies:
     artifactId: yasson
     version: 1.0.9
     scope: test
+  
+  - groupId: org.eclipse.persistence
+    artifactId: eclipselink
+    version: 2.7.10
+  
+  - groupId: mysql
+    artifactId: mysql-connector-java
+    version: 8.0.29
+    scope: provided
 
 build:
   finalName: rest_dabd
@@ -90,6 +99,21 @@ build:
       - groupId: io.openliberty.tools
         artifactId: liberty-maven-plugin
         version: 3.3.4
+        configuration:
+          copyDependencies:
+            dependencyGroup:
+              location: jdbc
+              dependency:
+                groupId: mysql
+                artifactId: mysql-connector-java
+                version: 8.0.29
+
+            dependencyGroup2:  # fix name in xml after resync
+              location: jpa
+              dependency:
+                groupId: org.eclipse.persistence
+                artifactId: eclipselink
+                version: 2.7.10
 
       - groupId: org.apache.maven.plugins
         artifactId: maven-failsafe-plugin
