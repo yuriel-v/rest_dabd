@@ -9,7 +9,7 @@ Uma API REST que se liga com um banco de dados contendo as entidades no MER abai
 
 ### Esquema do Banco de Dados
 #### Modelo Entidade Relacionamento
-![Modelo Entidade Relacionamento](https://i.gyazo.com/34b0871b4eae9d2f3fe4ad5d24981b1e.png)
+![Modelo Entidade Relacionamento](https://i.gyazo.com/d1d9e138028e5c8bf5d4445d85a7c86d.png)
 #### Modelo Relacional
 ![Modelo Relacional](https://i.gyazo.com/2d904511fe8c42bb1ec31ff276481612.png)
 
