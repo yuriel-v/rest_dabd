@@ -30,4 +30,11 @@ public class DocDao extends Dao<Doctor>
     public boolean exists(String primaryKey) {
         return this.em.find(Doctor.class, primaryKey) != null;
     }
+
+    public List<Doctor> findAll() {
+        return this.em.createQuery(
+            "SELECT doc FROM Doctor doctors", 
+            Doctor.class
+        ).getResultList();
+    }
 }

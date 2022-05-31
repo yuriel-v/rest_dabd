@@ -30,4 +30,11 @@ public class PatientDao extends Dao<Patient>
     public boolean exists(String primaryKey) {
         return this.em.find(Patient.class, primaryKey) != null;
     }
+
+    public List<Patient> findAll() {
+        return this.em.createQuery(
+            "SELECT patient FROM Patient patients", 
+            Patient.class
+        ).getResultList();
+    }
 }
