@@ -108,7 +108,7 @@ build:
                 artifactId: mysql-connector-java
                 version: 8.0.29
 
-            dependencyGroup2:  # fix name in xml after resync
+            dependencyGroup$2:  # Workaround para chaves duplicadas
               location: jpa
               dependency:
                 groupId: org.eclipse.persistence
