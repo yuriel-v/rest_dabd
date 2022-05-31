@@ -6,3 +6,4 @@
 #
 # O Maven só lê o pom.yml!
 mvn io.takari.polyglot:polyglot-translate-plugin:translate -Dinput=pom.yml -Doutput=pom.xml
+sed -i -r 's/\$[0-9]+>/>/g' ./pom.xml

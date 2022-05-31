@@ -4,34 +4,35 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "SampleUser")
+@Table(name = "test")
 public class SampleUser implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id  // isso indica que esse atributo é uma PK, ou parte dela
-    @Column(name = "UserID")
-    private int id;
+    private String cpf;
 
-    @Column(name = "UserName")
+    @Column
     private String name;
 
-    @Column  // nem toda anotação Column precisa de um nome declarado
-    private String phone;
+    public SampleUser(String cpf, String name) {
+        this.cpf = cpf;
+        this.name = name;
+    }
+
+    public SampleUser() {}
+    
 
     @Override
     public String toString() {
         return String.format(
-            "ID: %d | Nome: %s | Telefone: %s",
-            this.id, this.name, phone
+            "CPF: %s | Nome: %s ",
+            this.cpf, name
             // o "this" (se refere ao objeto atual) é opcional, mas gosto de explicitar
         );
     }
