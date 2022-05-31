@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.RollbackException;
 
 public abstract class Dao<T>
 {
@@ -27,12 +26,10 @@ public abstract class Dao<T>
             em.persist(entity);
             t.commit();
         }
-        catch (RollbackException e) {
-            throw e;
-        }
         catch (Exception e)
         {
-            t.rollback();
+            if (t.isActive())
+                t.rollback();
             throw e;
         }
     }
@@ -48,12 +45,10 @@ public abstract class Dao<T>
             }
             t.commit();
         }
-        catch (RollbackException e) {
-            throw e;
-        }
         catch (Exception e)
         {
-            t.rollback();
+            if (t.isActive())
+                t.rollback();
             throw e;
         }
     }
@@ -75,12 +70,10 @@ public abstract class Dao<T>
             em.merge(entity);
             t.commit();
         }
-        catch (RollbackException e) {
-            throw e;
-        }
         catch (Exception e)
         {
-            t.rollback();
+            if (t.isActive())
+                t.rollback();
             throw e;
         }
     }
@@ -94,12 +87,10 @@ public abstract class Dao<T>
             em.remove(entity);
             t.commit();
         }
-        catch (RollbackException e) {
-            throw e;
-        }
         catch (Exception e)
         {
-            t.rollback();
+            if (t.isActive())
+                t.rollback();
             throw e;
         }
     }
