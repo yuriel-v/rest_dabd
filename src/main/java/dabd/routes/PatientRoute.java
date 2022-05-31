@@ -97,6 +97,8 @@ public class PatientRoute
     @Path("{cpf:[0-9]{11}}")
     public Response updatePatient(@PathParam("cpf") String cpf, HashMap<String, String> body)
     {
+        if (body.isEmpty() || !(body.containsKey("name") || body.containsKey("address")))
+            return Response.noContent().build();
         try
         {
             pctl.updatePatient(cpf, body.get("name"), body.get("address"));

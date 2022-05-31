@@ -35,7 +35,7 @@ public class Patientctl
 
     public void createPatient(String cpf, String name, String address) throws InvalidFormatException, EntityExistsException
     {
-        if (cpf == null || !Patient.cpfPattern.matcher(cpf.toString()).find())
+        if (cpf == null || !Patient.cpfPattern.matcher(cpf).find())
             throw new InvalidFormatException("Patient CPF is null or not in correct format");
         
         if (name == null || name.isEmpty())
